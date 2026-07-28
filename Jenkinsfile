@@ -1,25 +1,29 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('Clone Code'){
-            steps{
-                git branch: 'main',
-                    url: 'https://github.com/mauryavibhav75/jenkins-demo-pipeline.git'
+    stages {
+        stage('Clone Code') {
+            steps {
+                git 'https://github.com/bytebyAparna/jenkins-demo-pipeline.git'
             }
         }
-        stage('Install Dependencies'){
-            steps{
-                sh 'pip install --break-system-packages -r requirements.txt'
+        stage('Install Python') {
+            steps {
+                sh 'apt-get update && apt-get install -y python3 python3-pip'
             }
         }
-        stage('Run Tests'){
-            steps{
-                sh 'python3 -m pytest'
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip3 install -r requirements.txt'
             }
         }
-        stage('Build Completed'){
-            steps{
-                echo 'Application Build Successfully'
+        stage('Run Test') {
+            steps {
+                sh 'python3 -m pytest -v'
+            }
+        }
+        stage('Build Completed') {
+            steps {
+                echo 'Application Build Successful'
             }
         }
     }
