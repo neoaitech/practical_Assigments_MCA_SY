@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Code') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/AVK103/jenkins-demo-pipeline.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install --break-system-packages -r requirements.txt'
+            }
+        }
+
+        stage('Run Test') {
+            steps {
+                sh 'python -m pytest'
+            }
+        }
+
+        stage('Build Completed') {
+            steps {
+                echo 'Application Build Successful'
+            }
+        }
+    }
+}
