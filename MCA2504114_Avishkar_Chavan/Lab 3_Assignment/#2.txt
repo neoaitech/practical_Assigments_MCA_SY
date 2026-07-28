@@ -1,0 +1,73 @@
+Started by user AVISHKAR CHAVAN
+Obtained Jenkinsfile from git https://github.com/Avishkar5653/jenkins-demo-pipeline.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/jenkins-demo-pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/jenkins-demo-pipeline/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Avishkar5653/jenkins-demo-pipeline.git # timeout=10
+Fetching upstream changes from https://github.com/Avishkar5653/jenkins-demo-pipeline.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/Avishkar5653/jenkins-demo-pipeline.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision e1ab72f24ea0d76c00aacd3b97187a190b280286 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f e1ab72f24ea0d76c00aacd3b97187a190b280286 # timeout=10
+Commit message: "Fix pip install"
+ > git rev-list --no-walk 9d597f11ac9bfeb87e1edab06a9bb56405603f82 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Install Dependencies)
+[Pipeline] sh
++ pip install --break-system-packages -r requirements.txt
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: pytest in /usr/local/lib/python3.13/dist-packages (from -r requirements.txt (line 1)) (9.1.1)
+Requirement already satisfied: iniconfig>=1.0.1 in /usr/local/lib/python3.13/dist-packages (from pytest->-r requirements.txt (line 1)) (2.3.0)
+Requirement already satisfied: packaging>=22 in /usr/lib/python3/dist-packages (from pytest->-r requirements.txt (line 1)) (25.0)
+Requirement already satisfied: pluggy<2,>=1.5 in /usr/local/lib/python3.13/dist-packages (from pytest->-r requirements.txt (line 1)) (1.6.0)
+Requirement already satisfied: pygments>=2.7.2 in /usr/local/lib/python3.13/dist-packages (from pytest->-r requirements.txt (line 1)) (2.20.0)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run Test)
+[Pipeline] sh
++ pytest
+============================= test session starts ==============================
+platform linux -- Python 3.13.5, pytest-9.1.1, pluggy-1.6.0
+rootdir: /var/jenkins_home/workspace/jenkins-demo-pipeline
+collected 1 item
+
+test_app.py .                                                            [100%]
+
+============================== 1 passed in 0.03s ===============================
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Completed)
+[Pipeline] echo
+Application Build Successful
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+Pipeline executed successfully!
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
