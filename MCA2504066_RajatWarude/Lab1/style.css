@@ -1,0 +1,202 @@
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+/* Navigation */
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    color: white;
+    padding: 15px 30px;
+}
+
+nav ul{
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a.active {
+    color: #4CAF50;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 5px;
+}
+
+/* Hero Section */
+.hero{
+    text-align: center;
+    padding: 60px 20px;
+    background: #4CAF50;
+    color: white;
+}
+
+.hero h1{
+    margin-bottom: 10px;
+}
+
+.hero p{
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.6;
+}
+
+/* All Sections */
+section{
+    padding: 50px 20px;
+}
+
+section h2{
+    text-align: center;
+    margin-bottom: 35px;
+    color: #333;
+}
+
+/* Cards Container */
+.cards{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* Card Design */
+.card{
+    background: white;
+    width: 280px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+}
+
+/* Profile Image */
+.card img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* Card Text */
+.card h3{
+    margin: 10px 0;
+    color: #333;
+}
+
+.card p{
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Skills List */
+.card ul{
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.card ul li{
+    background: #e9ecef;
+    margin: 8px 0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+/* Links */
+.card a{
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.card a:hover{
+    background: #388E3C;
+}
+
+/* Contact Form */
+form{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    max-width: 90%;
+    margin: auto;
+    gap: 15px;
+}
+
+input,
+textarea{
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+textarea{
+    resize: vertical;
+    min-height: 120px;
+}
+
+button{
+    padding: 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover{
+    background: #388E3C;
+}
+
+/* Responsive Design */
+@media (max-width: 768px){
+
+    nav{
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav ul{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cards{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card{
+        width: 90%;
+        max-width: 350px;
+    }
+
+    form{
+        width: 90%;
+    }
+}
