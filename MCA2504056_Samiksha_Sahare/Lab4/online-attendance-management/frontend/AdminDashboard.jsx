@@ -46,7 +46,7 @@ const AdminDashboard = () => {
                     ],
                 });
             } catch (err) {
-                toast.error('Failed to load dashboard stats');
+                toast.error('Failed to load dashboard is stats ');
             } finally {
                 setLoading(false);
             }
