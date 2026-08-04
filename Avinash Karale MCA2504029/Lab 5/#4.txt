@@ -1,0 +1,69 @@
+Started by user Avinash Karale
+Obtained Jenkinsfile from git https://github.com/AVK103/simple-scripted-pipeline
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/ScriptedDemo
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] echo
+Checking out source code...
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/AVK103/simple-scripted-pipeline
+ > git init /var/jenkins_home/workspace/ScriptedDemo # timeout=10
+Fetching upstream changes from https://github.com/AVK103/simple-scripted-pipeline
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/AVK103/simple-scripted-pipeline +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/AVK103/simple-scripted-pipeline # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 28cd5eab8d1664e712dd26076322198be378f66f (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 28cd5eab8d1664e712dd26076322198be378f66f # timeout=10
+Commit message: "Fix Jenkins checkout"
+First time build. Skipping changelog.
+[Pipeline] sh
++ pwd
+/var/jenkins_home/workspace/ScriptedDemo
+[Pipeline] sh
++ ls -la
+total 24
+drwxr-xr-x 3 jenkins jenkins 4096 Aug  4 14:17 .
+drwxr-xr-x 4 jenkins jenkins 4096 Aug  4 14:09 ..
+drwxr-xr-x 8 jenkins jenkins 4096 Aug  4 14:17 .git
+-rw-r--r-- 1 jenkins jenkins  343 Aug  4 14:17 Jenkinsfile
+-rw-r--r-- 1 jenkins jenkins  164 Aug  4 14:17 README.md
+-rw-r--r-- 1 jenkins jenkins   93 Aug  4 14:17 hello.py
+-rw-r--r-- 1 jenkins jenkins    0 Aug  4 14:17 requirements.txt
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] echo
+Building Project...
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run Python)
+[Pipeline] sh
++ python3 hello.py
+Hello from Jenkins Scripted Pipeline!
+Python CI/CD is working successfully.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Finish)
+[Pipeline] echo
+Pipeline Completed Successfully!
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
