@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install --break-system-packages -r requirements.txt'
+            }
+        }
+
+        stage('Run Test') {
+            steps {
+                sh 'pytest'
+            }
+        }
+
+        stage('Build Completed') {
+            steps {
+                echo 'Application Build Successful'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline executed successfully!'
+        }
+        failure {
+            echo 'Pipeline execution failed!'
+        }
+    }
+}
