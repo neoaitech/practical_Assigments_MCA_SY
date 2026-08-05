@@ -1,0 +1,15 @@
+    # Python
+    venv/
+    __pycache__/
+    *.pyc
+    
+    # Coverage and Reports
+    reports/
+    *.xml
+    .coverage
+    htmlcov/
+    
+    # OS files
+    .DS_Store
+    Thumbs.db
+    
