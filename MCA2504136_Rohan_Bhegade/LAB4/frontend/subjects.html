@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Subject Management</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-book"></i>
+
+            <h2>Subjects</h2>
+
+        </div>
+
+        <ul>
+            <li>
+                <a href="admin.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="students.html">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    Students
+                </a>
+            </li>
+            <li>
+                <a href="teachers.html">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    Teachers
+                </a>
+            </li>
+            <li class="active">
+                <a href="subjects.html">
+                    <i class="fa-solid fa-book"></i>
+                    Subjects
+                </a>
+            </li>
+            <li>
+                <a href="attendance.html">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Attendance
+                </a>
+            </li>
+            <li>
+                <a href="report.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Reports
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header>
+
+            <h1>Subject Management</h1>
+
+        </header>
+
+        <section class="table-section">
+
+            <h2>Add Subject</h2>
+
+            <form id="subjectForm">
+
+                <input type="hidden" id="subjectId">
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Subject Name"
+                    required>
+
+                <input
+                    type="text"
+                    id="code"
+                    placeholder="Subject Code"
+                    required>
+
+                <input
+                    type="number"
+                    id="semester"
+                    placeholder="Semester"
+                    required>
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                    id="saveBtn">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Save Subject
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <br>
+
+        <section class="table-section">
+
+            <h2>All Subjects</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Subject</th>
+
+                        <th>Code</th>
+
+                        <th>Semester</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="subjectTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/common.js"></script>
+<script src="js/subjects.js"></script>
+
+</body>
+
+</html>

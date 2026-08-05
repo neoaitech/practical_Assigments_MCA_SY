@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Attendance</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <h2>Teacher</h2>
+        </div>
+
+        <ul>
+            <li>
+                <a href="teacher.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="active">
+                <a href="teacher-attendance.html">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Take Attendance
+                </a>
+            </li>
+            <li>
+                <a href="report.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Reports
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header>
+            <h1>Take Attendance</h1>
+            <div class="profile">
+                <i class="fa-solid fa-user-circle"></i>
+                <span>Welcome, Teacher</span>
+            </div>
+        </header>
+
+        <section class="card">
+            <div class="form-row">
+                <div>
+                    <label>Class</label>
+                    <select id="class">
+                        <option>BCA FY</option>
+                        <option>BCA SY</option>
+                        <option>BCA TY</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Subject</label>
+                    <select id="subject">
+                        <option>Java</option>
+                        <option>Python</option>
+                        <option>DBMS</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Date</label>
+                    <input type="date" id="date">
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <table id="attendanceTable">
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <br>
+            <button onclick="saveAttendance()">Save Attendance</button>
+        </section>
+
+    </main>
+</div>
+
+<script src="js/common.js"></script>
+<script src="js/teacherAttendance.js"></script>
+
+</body>
+</html>

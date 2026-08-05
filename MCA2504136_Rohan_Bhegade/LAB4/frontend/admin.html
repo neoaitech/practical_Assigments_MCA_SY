@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Attendance Management System</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-user-shield"></i>
+
+            <h2>Admin</h2>
+
+        </div>
+
+        <ul>
+
+            <li class="active">
+                <a href="admin.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="students.html">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    Students
+                </a>
+            </li>
+
+            <li>
+                <a href="teachers.html">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    Teachers
+                </a>
+            </li>
+
+            <li>
+                <a href="subjects.html">
+                    <i class="fa-solid fa-book"></i>
+                    Subjects
+                </a>
+            </li>
+
+            <li>
+                <a href="attendance.html">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="report.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Reports
+                </a>
+            </li>
+
+            <li>
+                <a href="#" onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <!-- Header -->
+
+        <header>
+
+            <h1>Admin Dashboard</h1>
+
+            <div class="profile">
+
+                <i class="fa-solid fa-user-circle"></i>
+
+                <span>Administrator</span>
+
+            </div>
+
+        </header>
+
+        <!-- Cards -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                <h2 id="totalStudents">350</h2>
+
+                <p>Total Students</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-chalkboard-user"></i>
+
+                <h2 id="totalTeachers">25</h2>
+
+                <p>Total Teachers</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-book"></i>
+
+                <h2 id="totalClasses">12</h2>
+
+                <p>Subjects</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <h2 id="attendanceValue">96%</h2>
+
+                <p>Today's Attendance</p>
+
+            </div>
+
+        </section>
+
+        <!-- Chart -->
+
+        <section class="chart-section">
+
+            <h2>Monthly Attendance</h2>
+
+            <canvas id="attendanceChart"></canvas>
+
+        </section>
+
+        <!-- Add Student -->
+
+        <section class="form-section">
+
+            <h2>Add Student</h2>
+
+            <form id="addStudentForm" class="add-student-form">
+
+                <div class="input-box">
+                    <label>Name</label>
+                    <input type="text" id="newStudentName" placeholder="Enter student name" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Email</label>
+                    <input type="email" id="newStudentEmail" placeholder="Enter student email" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Password</label>
+                    <input type="password" id="newStudentPassword" placeholder="Enter student password" required>
+                </div>
+
+                <button type="submit" class="btn">Add Student</button>
+
+                <p id="addStudentMessage" class="form-message"></p>
+
+            </form>
+
+        </section>
+
+        <!-- Recent Attendance -->
+
+        <section class="table-section">
+
+            <h2>Recent Attendance</h2>
+            <p id="studentActionMessage" class="form-message"></p>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Roll No</th>
+
+                        <th>Name</th>
+
+                        <th>Class</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="recentAttendance">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/common.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/admin.js"></script>
+
+</body>
+</html>
