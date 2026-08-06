@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <h2>AMS</h2>
+            </div>
+
+            <ul>
+
+                <li class="active">
+                    <a href="admin.html">
+                        <i class="fa-solid fa-house"></i>
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#students">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        Students
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#teachers">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                        Teachers
+                    </a>
+                </li>
+
+                <li>
+                    <a href="attendance.html">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        Attendance
+                    </a>
+                </li>
+
+                <li>
+                    <a href="report.html">
+                        <i class="fa-solid fa-chart-column"></i>
+                        Reports
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+
+        </aside>
+
+        <!-- Main Content -->
+
+        <main class="main-content">
+
+            <!-- Header -->
+
+            <header>
+
+                <h1>Admin Dashboard</h1>
+
+                <div class="admin-name">
+                    Welcome Admin
+                </div>
+
+            </header>
+
+            <!-- Dashboard Cards -->
+
+            <section class="cards">
+
+                <div class="card">
+
+                    <i class="fa-solid fa-user-graduate"></i>
+
+                    <h2 id="studentCount">0</h2>
+
+                    <p>Total Students</p>
+
+                </div>
+
+                <div class="card">
+
+                    <i class="fa-solid fa-chalkboard-user"></i>
+
+                    <h2 id="teacherCount">0</h2>
+
+                    <p>Total Teachers</p>
+
+                </div>
+
+                <div class="card">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <h2 id="attendanceCount">0</h2>
+
+                    <p>Attendance Records</p>
+
+                </div>
+
+                <div class="card">
+
+                    <i class="fa-solid fa-book"></i>
+
+                    <h2>6</h2>
+
+                    <p>Subjects</p>
+
+                </div>
+
+            </section>
+
+            <!-- Add Student -->
+
+            <section id="students" class="form-section">
+
+                <h2>Add Student</h2>
+
+                <form id="studentForm">
+
+                    <input type="text"
+                        id="studentName"
+                        placeholder="Student Name"
+                        required>
+
+                    <input type="text"
+                        id="rollNo"
+                        placeholder="Roll Number"
+                        required>
+
+                    <input type="text"
+                        id="department"
+                        placeholder="Department"
+                        required>
+
+                    <input type="number"
+                        id="semester"
+                        placeholder="Semester"
+                        required>
+
+                    <button type="submit">
+                        Add Student
+                    </button>
+
+                </form>
+
+            </section>
+
+            <!-- Student Table -->
+
+            <section>
+
+                <h2>Student List</h2>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Name</th>
+
+                            <th>Roll No</th>
+
+                            <th>Department</th>
+
+                            <th>Semester</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="studentTable">
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+            <!-- Add Teacher -->
+
+            <section id="teachers" class="form-section">
+
+                <h2>Add Teacher</h2>
+
+                <form id="teacherForm">
+
+                    <input type="text"
+                        id="teacherName"
+                        placeholder="Teacher Name"
+                        required>
+
+                    <input type="email"
+                        id="teacherEmail"
+                        placeholder="Email"
+                        required>
+
+                    <input type="text"
+                        id="teacherSubject"
+                        placeholder="Subject"
+                        required>
+
+                    <button type="submit">
+                        Add Teacher
+                    </button>
+
+                </form>
+
+            </section>
+
+            <!-- Teacher Table -->
+
+            <section>
+
+                <h2>Teacher List</h2>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Name</th>
+
+                            <th>Email</th>
+
+                            <th>Subject</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="teacherTable">
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+        </main>
+
+    </div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
