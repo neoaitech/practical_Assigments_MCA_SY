@@ -1,43 +1,68 @@
-node {
-
-    stage('Checkout') {
-        checkout scm
+pipeline {
+    agent {
+        docker { 
+            image 'python:3.11' 
+            args '-u root' 
+        }
     }
-
-    stage('Create Virtual Environment') {
-        bat 'python -m venv venv'
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        
+        stage('Run Application') {
+            steps {
+                sh 'python app.py'
+            }
+        }
+        
+        stage('Run Unit Tests') {
+            steps {
+                sh 'pytest --junitxml=reports/test-results.xml'
+            }
+        }
+        
+        stage('Code Quality') {
+            steps {
+                sh 'flake8 . || true'
+            }
+        }
+        
+        stage('Generate Coverage') {
+            steps {
+                sh 'coverage run -m pytest'
+                sh 'coverage xml -o reports/coverage.xml'
+            }
+        }
+        
+        stage('Publish Test Results') {
+            steps {
+                junit 'reports/test-results.xml'
+            }
+        }
+        
+        stage('Archive Reports') {
+            steps {
+                archiveArtifacts artifacts: 'reports/*.xml', fingerprint: true
+            }
+        }
     }
-
-    stage('Install Dependencies') {
-        bat 'venv\\Scripts\\activate && pip install -r requirements.txt'
-    }
-
-    stage('Run Application') {
-        bat 'venv\\Scripts\\activate && python app.py'
-    }
-
-    stage('Run Unit Tests') {
-        bat 'venv\\Scripts\\activate && pytest --junitxml=reports\\test-results.xml'
-    }
-
-    stage('Code Quality') {
-        bat 'venv\\Scripts\\activate && flake8 . --output-file=reports\\flake8-report.txt || exit 0'
-    }
-
-    stage('Generate Coverage') {
-        bat 'venv\\Scripts\\activate && coverage run -m pytest'
-        bat 'venv\\Scripts\\activate && coverage xml -o reports\\coverage.xml'
-    }
-
-    stage('Publish Test Results') {
-        junit 'reports\\test-results.xml'
-    }
-
-    stage('Archive Reports') {
-        archiveArtifacts artifacts: 'reports\\*.xml, reports\\*.txt', fingerprint: true
-    }
-
-    stage('Finish') {
-        echo "Pipeline Completed Successfully"
+    
+    post {
+        success {
+            echo "Pipeline Completed Successfully"
+        }
+        failure {
+            echo "Pipeline Failed"
+        }
     }
 }
