@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Skill Portfolio | MCA Team</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #071426;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 8%;
+
+            background: rgba(5, 15, 30, 0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5ce1e6;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #5ce1e6;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 120px 20px 60px;
+
+            background:
+            radial-gradient(circle at 20% 30%, #173c63, transparent 35%),
+            radial-gradient(circle at 80% 60%, #17304f, transparent 40%),
+            #071426;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+
+            padding: 8px 20px;
+
+            background: rgba(92,225,230,0.1);
+
+            border: 1px solid #5ce1e6;
+            border-radius: 30px;
+
+            color: #5ce1e6;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #5ce1e6;
+        }
+
+        .hero p {
+            color: #b6c5d8;
+            font-size: 19px;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .hero-buttons {
+            margin-top: 35px;
+        }
+
+        .btn {
+            display: inline-block;
+
+            padding: 13px 28px;
+
+            border-radius: 8px;
+
+            margin: 5px;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .primary-btn {
+            background: #5ce1e6;
+            color: #071426;
+            font-weight: bold;
+        }
+
+        .secondary-btn {
+            border: 1px solid #5ce1e6;
+            color: #5ce1e6;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+        }
+
+        /* COMMON SECTION */
+
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+        }
+
+        .section-title span {
+            color: #5ce1e6;
+        }
+
+        .section-title p {
+            color: #9fb0c5;
+            margin-top: 10px;
+        }
+
+        /* ABOUT */
+
+        .about-box {
+            max-width: 1000px;
+            margin: auto;
+
+            background: #0d1e33;
+
+            padding: 40px;
+
+            border-radius: 18px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            text-align: center;
+        }
+
+        .about-box p {
+            color: #b5c4d6;
+            font-size: 17px;
+        }
+
+        /* TEAM */
+
+        #team {
+            background: #09182a;
+        }
+
+        .team-container {
+            display: grid;
+
+            grid-template-columns:
+            repeat(auto-fit, minmax(230px, 1fr));
+
+            gap: 25px;
+        }
+
+        .member-card {
+            background: #10243d;
+
+            padding: 35px 25px;
+
+            border-radius: 18px;
+
+            text-align: center;
+
+            cursor: pointer;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            transition: 0.35s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+
+            border-color: #5ce1e6;
+
+            box-shadow:
+            0 15px 40px rgba(92,225,230,0.15);
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+
+            margin: auto;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 35px;
+            font-weight: bold;
+
+            color: #071426;
+
+            background:
+            linear-gradient(135deg,#5ce1e6,#65a7ff);
+
+            margin-bottom: 20px;
+        }
+
+        .member-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .role {
+            color: #5ce1e6;
+            margin-bottom: 8px;
+        }
+
+        .roll {
+            color: #9fb0c5;
+            font-size: 14px;
+        }
+
+        .view-profile {
+            margin-top: 20px;
+
+            display: inline-block;
+
+            color: #5ce1e6;
+
+            border: 1px solid #5ce1e6;
+
+            padding: 8px 18px;
+
+            border-radius: 6px;
+        }
+
+        /* PROFILE */
+
+        #profile-section {
+            display: none;
+        }
+
+        .profile-box {
+            max-width: 850px;
+
+            margin: auto;
+
+            background: #10243d;
+
+            padding: 45px;
+
+            border-radius: 20px;
+
+            border: 1px solid #5ce1e6;
+        }
+
+        .profile-header {
+            text-align: center;
+
+            padding-bottom: 30px;
+
+            border-bottom:
+            1px solid rgba(255,255,255,0.1);
+        }
+
+        .profile-header .avatar {
+            width: 120px;
+            height: 120px;
+        }
+
+        .profile-header h2 {
+            font-size: 32px;
+        }
+
+        .profile-content {
+            margin-top: 30px;
+        }
+
+        .profile-content h3 {
+            color: #5ce1e6;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .profile-content p {
+            color: #b6c5d8;
+        }
+
+        /* SKILLS */
+
+        .skills {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 15px;
+        }
+
+        .skill {
+            background: rgba(92,225,230,0.1);
+
+            color: #5ce1e6;
+
+            padding: 8px 15px;
+
+            border-radius: 20px;
+
+            border: 1px solid rgba(92,225,230,0.3);
+        }
+
+        /* PROJECTS */
+
+        .projects-grid {
+            display: grid;
+
+            grid-template-columns:
+            repeat(auto-fit,minmax(250px,1fr));
+
+            gap: 25px;
+        }
+
+        .project {
+            background: #10243d;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-6px);
+
+            border-color: #5ce1e6;
+        }
+
+        .project h3 {
+            color: #5ce1e6;
+
+            margin-bottom: 12px;
+        }
+
+        .project p {
+            color: #b6c5d8;
+        }
+
+        /* CONTACT */
+
+        #contact {
+            background: #09182a;
+        }
+
+        .contact-box {
+            text-align: center;
+
+            max-width: 700px;
+
+            margin: auto;
+        }
+
+        .contact-box p {
+            color: #b6c5d8;
+
+            margin-bottom: 25px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 30px;
+
+            text-align: center;
+
+            background: #040c16;
+
+            color: #8092a8;
+        }
+
+        footer span {
+            color: #5ce1e6;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:768px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+
+            nav ul li a {
+                font-size: 13px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        SkillPortfolio
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="#home">Home</a>
+        </li>
+
+        <li>
+            <a href="#about">About</a>
+        </li>
+
+        <li>
+            <a href="#team">Team</a>
+        </li>
+
+        <li>
+            <a href="#projects">Projects</a>
+        </li>
+
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            MCA Software Development Team
+        </div>
+
+        <h1>
+
+            Student
+
+            <span>
+                Skill Portfolio
+            </span>
+
+        </h1>
+
+        <p>
+
+            A collaborative portfolio showcasing the skills,
+            projects, technical knowledge and development journey
+            of four MCA students passionate about software
+            development and modern technologies.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#team"
+               class="btn primary-btn">
+
+                Meet Our Team
+
+            </a>
+
+            <a href="#projects"
+               class="btn secondary-btn">
+
+                View Projects
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="section-title">
+
+        <h2>
+            About <span>Us</span>
+        </h2>
+
+        <p>
+            MCA Students • Developers • Learners
+        </p>
+
+    </div>
+
+    <div class="about-box">
+
+        <p>
+
+            We are a team of four Master of Computer Applications
+            students with an interest in software development,
+            web technologies, programming and DevOps.
+
+            This portfolio represents our academic journey,
+            technical skills, practical projects and experience
+            with technologies used in modern software development.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- TEAM -->
+
+<section id="team">
+
+    <div class="section-title">
+
+        <h2>
+            Meet Our <span>Team</span>
+        </h2>
+
+        <p>
+            Click any member to view their profile.
+        </p>
+
+    </div>
+
+
+    <div class="team-container">
+
+
+        <!-- VAIBHAV -->
+
+        <div class="member-card"
+             onclick="showProfile('vaibhav')">
+
+            <div class="avatar">
+                VM
+            </div>
+
+            <h3>
+                Vaibhav Kumar Maurya
+            </h3>
+
+            <div class="role">
+                Software Developer
+            </div>
+
+            <div class="roll">
+                MCA2504027
+            </div>
+
+            <div class="view-profile">
+                View Profile
+            </div>
+
+        </div>
+
+
+        <!-- TUSHAR -->
+
+        <div class="member-card"
+             onclick="showProfile('tushar')">
+
+            <div class="avatar">
+                TR
+            </div>
+
+            <h3>
+                Tushar Rajpurohit
+            </h3>
+
+            <div class="role">
+                Software Developer
+            </div>
+
+            <div class="roll">
+                MCA2504038
+            </div>
+
+            <div class="view-profile">
+                View Profile
+            </div>
+
+        </div>
+
+
+        <!-- RAUNAK -->
+
+        <div class="member-card"
+             onclick="showProfile('raunak')">
+
+            <div class="avatar">
+                RJ
+            </div>
+
+            <h3>
+                Raunak Jaiswar
+            </h3>
+
+            <div class="role">
+                Software Developer
+            </div>
+
+            <div class="roll">
+                MCA Student
+            </div>
+
+            <div class="view-profile">
+                View Profile
+            </div>
+
+        </div>
+
+
+        <!-- HRISHIKESH -->
+
+        <div class="member-card"
+             onclick="showProfile('hrishikesh')">
+
+            <div class="avatar">
+                HC
+            </div>
+
+            <h3>
+            rushikesh jagtap
+            </h3>
+
+            <div class="role">
+                Software Developer
+            </div>
+
+            <div class="roll">
+                MCA Student
+            </div>
+
+            <div class="view-profile">
+                View Profile
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DYNAMIC PROFILE -->
+
+<section id="profile-section">
+
+    <div class="section-title">
+
+        <h2>
+            Student <span>Profile</span>
+        </h2>
+
+    </div>
+
+
+    <div class="profile-box">
+
+
+        <div class="profile-header">
+
+            <div class="avatar"
+                 id="profileAvatar">
+
+                VM
+
+            </div>
+
+            <h2 id="profileName">
+                Student Name
+            </h2>
+
+            <div class="role"
+                 id="profileRole">
+
+                Software Developer
+
+            </div>
+
+            <p id="profileRoll">
+                Roll Number
+            </p>
+
+        </div>
+
+
+        <div class="profile-content">
+
+
+            <h3>
+                About Me
+            </h3>
+
+            <p id="profileAbout"></p>
+
+
+            <h3>
+                Education
+            </h3>
+
+            <p>
+                Master of Computer Applications (MCA)
+            </p>
+
+
+            <h3>
+                Area of Interest
+            </h3>
+
+            <p>
+
+                Software Development,
+                Web Development,
+                Programming,
+                Database Management,
+                DevOps and Emerging Technologies.
+
+            </p>
+
+
+            <h3>
+                Technical Skills
+            </h3>
+
+
+            <div class="skills">
+
+                <span class="skill">
+                    HTML
+                </span>
+
+                <span class="skill">
+                    CSS
+                </span>
+
+                <span class="skill">
+                    JavaScript
+                </span>
+
+                <span class="skill">
+                    Python
+                </span>
+
+                <span class="skill">
+                    Java
+                </span>
+
+                <span class="skill">
+                    Node.js
+                </span>
+
+                <span class="skill">
+                    SQL
+                </span>
+
+                <span class="skill">
+                    Git
+                </span>
+
+                <span class="skill">
+                    GitHub
+                </span>
+
+                <span class="skill">
+                    Docker
+                </span>
+
+                <span class="skill">
+                    Jenkins
+                </span>
+
+            </div>
+
+
+            <h3>
+                Professional Objective
+            </h3>
+
+            <p>
+
+                To continuously improve technical and
+                problem-solving skills while gaining practical
+                experience in software development and contributing
+                to meaningful technology projects.
+
+            </p>
+
+
+            <br>
+
+            <a href="#team"
+               class="btn primary-btn">
+
+                ← Back To Team
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+    <div class="section-title">
+
+        <h2>
+            Our <span>Projects</span>
+        </h2>
+
+        <p>
+            Practical projects developed during our MCA journey.
+        </p>
+
+    </div>
+
+
+    <div class="projects-grid">
+
+
+        <div class="project">
+
+            <h3>
+                Student Skill Portfolio
+            </h3>
+
+            <p>
+
+                A responsive web portfolio for showcasing
+                student profiles, skills, education and
+                software development experience.
+
+            </p>
+
+        </div>
+
+
+        <div class="project">
+
+            <h3>
+                Attendance Management System
+            </h3>
+
+            <p>
+
+                Web-based attendance management system
+                containing Admin, Teacher and Student modules.
+
+            </p>
+
+        </div>
+
+
+        <div class="project">
+
+            <h3>
+                Jenkins CI Pipeline
+            </h3>
+
+            <p>
+
+                Continuous Integration pipeline for automatically
+                cloning, building and testing application code
+                using Jenkins.
+
+            </p>
+
+        </div>
+
+
+        <div class="project">
+
+            <h3>
+                Docker Deployment
+            </h3>
+
+            <p>
+
+                Containerization and deployment of applications
+                using Docker as part of a CI/CD workflow.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <div class="section-title">
+
+        <h2>
+            Contact <span>Team</span>
+        </h2>
+
+    </div>
+
+
+    <div class="contact-box">
+
+        <p>
+
+            We are MCA students exploring opportunities
+            in software development, web development,
+            DevOps and related technologies.
+
+        </p>
+
+        <a href="#team"
+           class="btn primary-btn">
+
+            View Team
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026
+
+    <span>
+        Student Skill Portfolio
+    </span>
+
+    | MCA Software Development Team
+
+</footer>
+
+
+<script>
+
+    const profiles = {
+
+        vaibhav: {
+
+            name:
+            "Vaibhav Kumar Maurya",
+
+            roll:
+            "MCA2504027",
+
+            avatar:
+            "VM",
+
+            about:
+            "An MCA student interested in software development, web technologies, backend development, programming and DevOps. Focused on improving practical development skills by building projects and learning modern technologies."
+
+        },
+
+
+        tushar: {
+
+            name:
+            "Tushar Rajpurohit",
+
+            roll:
+            "MCA2504038",
+
+            avatar:
+            "TR",
+
+            about:
+            "An MCA student and aspiring software developer interested in programming, web development and modern software technologies. Passionate about learning new tools and applying technical knowledge through practical projects."
+
+        },
+
+
+        raunak: {
+
+            name:
+            "Raunak Jaiswar",
+
+            roll:
+            "Roll Number: To be added",
+
+            avatar:
+            "RJ",
+
+            about:
+            "An MCA student focused on developing practical skills in software development, programming and web technologies. Interested in learning modern development practices and working on collaborative software projects."
+
+        },
+
+
+        hrishikesh: {
+
+            name:
+            "Hrishikesh jagtap",
+
+            roll:
+            "Roll Number: To be added",
+
+            avatar:
+            "HC",
+
+            about:
+            "An MCA student and software development learner interested in programming, web applications and modern development technologies. Focused on strengthening technical knowledge through academic and practical projects."
+
+        }
+
+    };
+
+
+    function showProfile(member) {
+
+        const profile = profiles[member];
+
+        document.getElementById("profileName")
+        .innerText = profile.name;
+
+        document.getElementById("profileRoll")
+        .innerText = profile.roll;
+
+        document.getElementById("profileAvatar")
+        .innerText = profile.avatar;
+
+        document.getElementById("profileAbout")
+        .innerText = profile.about;
+
+        document.getElementById("profileRole")
+        .innerText = "Software Developer";
+
+
+        const section =
+        document.getElementById("profile-section");
+
+        section.style.display = "block";
+
+
+        section.scrollIntoView({
+
+            behavior: "smooth"
+
+        });
+
+    }
+
+</script>
+
+
+</body>
+</html>
