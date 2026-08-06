@@ -1,0 +1,11 @@
+node {
+
+    stage('Checkout') {
+        checkout scm
+    }
+
+    stage('Run Unit Tests') {
+        sh 'pytest'
+    }
+
+}
