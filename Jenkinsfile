@@ -1,38 +1,40 @@
 node {
+
     stage('Checkout') {
         checkout scm
     }
-    
+
+    stage('Create Virtual Environment') {
+        sh 'python3 -m venv venv'
+    }
+
     stage('Install Dependencies') {
-        sh 'pip3 install -r requirements.txt'
+        sh '. venv/bin/activate && pip install -r requirements.txt'
     }
-    
+
     stage('Run Application') {
-        sh 'python3 app.py'
+        sh '. venv/bin/activate && python app.py'
     }
-    
+
     stage('Run Unit Tests') {
-        sh 'pytest --junitxml=reports/test-results.xml'
+        sh '. venv/bin/activate && pytest'
     }
-    
+
     stage('Code Quality') {
-        sh 'flake8 . || true'
+        sh '. venv/bin/activate && flake8 .'
     }
-    
+
     stage('Generate Coverage') {
-        sh 'coverage run -m pytest'
-        sh 'coverage xml -o reports/coverage.xml'
+        sh '. venv/bin/activate && coverage run -m pytest'
+        sh '. venv/bin/activate && coverage xml'
     }
-    
-    stage('Publish Test Results') {
-        junit 'reports/test-results.xml'
-    }
-    
+
     stage('Archive Reports') {
-        archiveArtifacts artifacts: 'reports/*.xml', fingerprint: true
+        archiveArtifacts artifacts: '*.xml', fingerprint: true
     }
-    
+
     stage('Finish') {
         echo "Pipeline Completed Successfully"
     }
+
 }
