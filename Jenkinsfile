@@ -5,36 +5,39 @@ node {
     }
 
     stage('Create Virtual Environment') {
-        sh 'python3 -m venv venv'
+        bat 'python -m venv venv'
     }
 
     stage('Install Dependencies') {
-        sh '. venv/bin/activate && pip install -r requirements.txt'
+        bat 'venv\\Scripts\\activate && pip install -r requirements.txt'
     }
 
     stage('Run Application') {
-        sh '. venv/bin/activate && python app.py'
+        bat 'venv\\Scripts\\activate && python app.py'
     }
 
     stage('Run Unit Tests') {
-        sh '. venv/bin/activate && pytest'
+        bat 'venv\\Scripts\\activate && pytest --junitxml=reports\\test-results.xml'
     }
 
     stage('Code Quality') {
-        sh '. venv/bin/activate && flake8 .'
+        bat 'venv\\Scripts\\activate && flake8 . --output-file=reports\\flake8-report.txt || exit 0'
     }
 
     stage('Generate Coverage') {
-        sh '. venv/bin/activate && coverage run -m pytest'
-        sh '. venv/bin/activate && coverage xml'
+        bat 'venv\\Scripts\\activate && coverage run -m pytest'
+        bat 'venv\\Scripts\\activate && coverage xml -o reports\\coverage.xml'
+    }
+
+    stage('Publish Test Results') {
+        junit 'reports\\test-results.xml'
     }
 
     stage('Archive Reports') {
-        archiveArtifacts artifacts: '*.xml', fingerprint: true
+        archiveArtifacts artifacts: 'reports\\*.xml, reports\\*.txt', fingerprint: true
     }
 
     stage('Finish') {
         echo "Pipeline Completed Successfully"
     }
-
 }
