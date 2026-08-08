@@ -25,7 +25,7 @@ node {
     }
 
     stage('Code Quality') {
-        runCommand("${pythonCommand} -m flake8 .")
+        runCommand("${pythonCommand} -m flake8 . --exclude=.venv")
     }
 
     stage('Generate Coverage') {
