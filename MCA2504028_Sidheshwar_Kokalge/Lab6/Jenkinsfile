@@ -1,0 +1,38 @@
+node {
+
+    stage('Checkout') {
+        checkout scm
+    }
+
+    stage('Create Virtual Environment') {
+        sh 'python3 -m venv venv'
+    }
+
+    stage('Install Dependencies') {
+        sh '. venv/bin/activate && pip install -r requirements.txt'
+    }
+
+    stage('Run Unit Tests') {
+        sh '. venv/bin/activate && python -m pytest'
+    }
+
+    stage('Code Quality') {
+        sh '. venv/bin/activate && python -m flake8 . --exclude=venv'
+    }
+
+    stage('Generate Coverage') {
+        sh '''
+            . venv/bin/activate
+            python -m coverage run -m pytest
+            python -m coverage xml
+        '''
+    }
+
+    stage('Archive Reports') {
+        archiveArtifacts artifacts: '*.xml', fingerprint: true
+    }
+
+    stage('Finish') {
+        echo "Pipeline Completed Successfully"
+    }
+}
