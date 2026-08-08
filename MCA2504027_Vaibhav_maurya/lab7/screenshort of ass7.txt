@@ -1,0 +1,579 @@
+PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical> ^C
+PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical> (Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned) ; (& c:\Users\KHUSHI\OneDrive\Desktop\docker-practical\.venv\Scripts\Activate.ps1)
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical> docker start jenkins
+jenkins
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical> docker ps
+CONTAINER ID   IMAGE                 COMMAND                  CREATED        STATUS          PORTS                                                                                          NAMES
+0cdfbdb1852f   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   44 hours ago   Up 31 seconds   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp, 0.0.0.0:50000->50000/tcp, [::]:50000->50000/tcp   jenkins
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical> docker volume ls
+DRIVER    VOLUME NAME
+local     4e0ea1b7c7cda133b2513b0e6fba2e891984ad856beca1add8060dfcfa55a040
+local     7dd8341f6074dfb7263316ed80af11329f951023c383d3c00142090d51e39a16
+local     8fd27c9df53cfff93344c93c45b14338d43c456d2ce31c9e20fa339e02207bac
+local     79956380e47c79c2483e7ab0f245728492740a82e1d6ea42a55ca1cccdf64aa1
+local     cc6b7224684ac4d72d8e1a9639ebd6bf57f242aa403441ef74467a118eff10ac
+local     jenkins_home
+(.venv) PS^C:\Users\KHUSHI\OneDrive\Desktop\docker-practical> 
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical> ^C
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical> cd app
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> ls
+
+
+    Directory: C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app
+
+
+Mode                 LastWriteTime         Length Name                    
+----                 -------------         ------ ----                    
+-a---l        06-08-2026     14:33            330 app.py                  
+-a---l        06-08-2026     14:36            368 Dockerfile              
+-a---l        06-08-2026     14:33             28 requirements.txt        
+
+
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> ^C
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker build -t myflaskapp:1.0 .
+[+] Building 22.7s (11/11) FINISHED                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                  0.1s
+ => => transferring dockerfile: 407B                                  0.0s
+ => [internal] load metadata for docker.io/library/python:3.11-slim   3.5s
+ => [auth] library/python:pull token for registry-1.docker.io         0.0s
+ => [internal] load .dockerignore                                     0.0s
+ => => transferring context: 2B                                       0.0s
+ => [internal] load build context                                     0.1s
+ => => transferring context: 847B                                     0.0s
+ => [1/5] FROM docker.io/library/python:3.11-slim@sha256:94c50be2dc  11.1s
+ => => resolve docker.io/library/python:3.11-slim@sha256:94c50be2dc9  0.1s
+ => => sha256:0fc9203b193a8869d7e8cdb9754932db059f4a0d5b 249B / 249B  0.2s
+ => => sha256:2835c55197170c643a531e330159e6c5c215f0 1.29MB / 1.29MB  0.9s
+ => => sha256:bbaff5426d0f7209ef9826582b46945e0e68 14.45MB / 14.45MB  6.9s
+ => => sha256:26c307b5e35a59ce911f5fde5b9458120ec8 29.78MB / 29.78MB  8.7s
+ => => extracting sha256:26c307b5e35a59ce911f5fde5b9458120ec8734e831  1.2s
+ => => extracting sha256:2835c55197170c643a531e330159e6c5c215f044e97  0.1s
+ => => extracting sha256:bbaff5426d0f7209ef9826582b46945e0e6851829b3  0.8s
+ => => extracting sha256:0fc9203b193a8869d7e8cdb9754932db059f4a0d5b9  0.0s
+ => [2/5] WORKDIR /usr/src/app                                        0.5s
+ => [3/5] COPY requirements.txt .                                     0.1s
+ => [4/5] RUN pip install --no-cache-dir -r requirements.txt          5.5s
+ => [5/5] COPY . .                                                    0.1s
+ => exporting to image                                                1.7s
+ => => exporting layers                                               1.1s
+ => => exporting manifest sha256:5c107ec07a85fc47c93f393f42a2c890994  0.0s
+ => => exporting config sha256:3d107ea38d7f9a6151d2b992d5dc92e452d67  0.0s
+ => => exporting attestation manifest sha256:c479a0457d96cca77acbbe8  0.0s
+ => => exporting manifest list sha256:1635151f9c2498b3e2982c580fa9dc  0.0s
+ => => naming to docker.io/library/myflaskapp:1.0                     0.0s
+ => => unpacking to docker.io/library/myflaskapp:1.0                  0.4s
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker images
+                                                       i Info →   U  In Use
+IMAGE                      ID             DISK USAGE   CONTENT SIZE   EXTRA
+attendance-system:latest   218befc53cc4        238MB         63.1MB    U   
+hello-world:latest         c3cbe1cc1aa5       25.9kB         9.49kB    U   
+jenkins-docker:latest      bd6cb240c180       1.41GB          451MB        
+jenkins/jenkins:lts        f4f65e6cd140        801MB          290MB    U   
+myflaskapp:1.0             1635151f9c24        214MB         51.9MB        
+sonarqube:lts-community    f709975ab31d       1.02GB          398MB    U   
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker network create app-network
+08cb2ff153635ea4921180b9a59c33050936a571704dabeb57182c1a146db390
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker network ls
+NETWORK ID     NAME          DRIVER    SCOPE
+08cb2ff15363   app-network   bridge    local
+8a3ab41acca7   bridge        bridge    local
+09b861fefbc2   host          host      local
+b845e5e9ebd8   none          null      local
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker network inspect app-network
+[
+    {
+        "Name": "app-network",
+        "Id": "08cb2ff153635ea4921180b9a59c33050936a571704dabeb57182c1a146db390",
+        "Created": "2026-08-07T12:49:21.279340871Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.enable_ipv4": "true",
+            "com.docker.network.enable_ipv6": "false"
+        },
+        "Labels": {},
+        "Containers": {},
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.18.0.0/16": {
+                        "IPsInUse": 3,
+                        "DynamicIPsAvailable": 65533
+                    }
+                }
+            }
+        }
+    }
+]
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker volume create redis-data
+redis-data
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker volume ls
+DRIVER    VOLUME NAME
+local     4e0ea1b7c7cda133b2513b0e6fba2e891984ad856beca1add8060dfcfa55a040
+local     7dd8341f6074dfb7263316ed80af11329f951023c383d3c00142090d51e39a16
+local     8fd27c9df53cfff93344c93c45b14338d43c456d2ce31c9e20fa339e02207bac
+local     79956380e47c79c2483e7ab0f245728492740a82e1d6ea42a55ca1cccdf64aa1
+local     cc6b7224684ac4d72d8e1a9639ebd6bf57f242aa403441ef74467a118eff10ac
+local     jenkins_home
+local     redis-data
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker volume inspect redis-data
+[
+    {
+        "CreatedAt": "2026-08-07T12:49:52Z",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/redis-data/_data",
+        "Name": "redis-data",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker run -d --name redis-server --network app-network -v redis-data:/data redis:7-alpine redis-server --save 60 1
+Unable to find image 'redis:7-alpine' locally
+7-alpine: Pulling from library/redis
+4f4fb700ef54: Already exists 
+db197c512a33: Pull complete 
+63e63047b377: Pull complete 
+f5a655897537: Pull complete 
+627d9d06d3d0: Pull complete 
+897d797d2723: Pull complete 
+93ebed1aef27: Pull complete 
+22b5e73fc01c: Download complete 
+cac39341ecaa: Download complete 
+Digest: sha256:e7723ff73d963f5cc6d9c4643ea3d989527a402a319239054e9472a7fb9219a2
+Status: Downloaded newer image for redis:7-alpine
+0bba340617c8a3d18fc0e3e688f23d4bff40ff52dc0b9ab1955ec562ece9598a
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker run -d --name flask-app --network app-network -p 5000:5000 myflaskapp:1.0
+3ade4088129d64465a628df19a72a4da43900e71a0d779215280852233ee8ba6
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker ps
+
+CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                                                                                          NAMES
+3ade4088129d   myflaskapp:1.0        "python app.py"          28 seconds ago   Up 27 seconds   0.0.0.0:5000->5000/tcp, [::]:5000->5000/tcp                                                    flask-app
+0bba340617c8   redis:7-alpine        "docker-entrypoint.s…"   53 seconds ago   Up 52 seconds   6379/tcp                                                                                       redis-server
+0cdfbdb1852f   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   44 hours ago     Up 12 minutes   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp, 0.0.0.0:50000->50000/tcp, [::]:50000->50000/tcp   jenkins
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker logs flask-app
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.3:5000
+Press CTRL+C to quit
+172.18.0.1 - - [07/Aug/2026 13:26:22] "GET / HTTP/1.1" 200 -
+172.18.0.1 - - [07/Aug/2026 13:26:22] "GET /favicon.ico HTTP/1.1" 404 -
+172.18.0.1 - - [07/Aug/2026 13:26:35] "GET / HTTP/1.1" 200 -
+172.18.0.1 - - [07/Aug/2026 13:26:42] "GET / HTTP/1.1" 200 -
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker logs -f flask-app
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.3:5000
+Press CTRL+C to quit
+172.18.0.1 - - [07/Aug/2026 13:26:22] "GET / HTTP/1.1" 200 -
+172.18.0.1 - - [07/Aug/2026 13:26:22] "GET /favicon.ico HTTP/1.1" 404 -
+172.18.0.1 - - [07/Aug/2026 13:26:35] "GET / HTTP/1.1" 200 -
+172.18.0.1 - - [07/Aug/2026 13:26:42] "GET / HTTP/1.1" 200 -
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker inspect flask-app
+[
+    {
+        "Id": "3ade4088129d64465a628df19a72a4da43900e71a0d779215280852233ee8ba6",
+        "Created": "2026-08-07T12:50:53.627759651Z",
+        "Path": "python",
+        "Args": [
+            "app.py"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 874,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-08-07T12:50:53.764881588Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:1635151f9c2498b3e2982c580fa9dc3aa344399d70cc554dd00a7bf8af79de52",
+        "ResolvConfPath": "/var/lib/docker/containers/3ade4088129d64465a628df19a72a4da43900e71a0d779215280852233ee8ba6/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/3ade4088129d64465a628df19a72a4da43900e71a0d779215280852233ee8ba6/hostname",
+        "HostsPath": "/var/lib/docker/containers/3ade4088129d64465a628df19a72a4da43900e71a0d779215280852233ee8ba6/hosts",
+        "LogPath": "/var/lib/docker/containers/3ade4088129d64465a628df19a72a4da43900e71a0d779215280852233ee8ba6/3ade4088129d64465a628df19a72a4da43900e71a0d779215280852233ee8ba6-json.log",
+        "Name": "/flask-app",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "app-network",
+            "PortBindings": {
+                "5000/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "5000"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                9,
+                75
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "3ade4088129d",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "5000/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D",
+                "PYTHON_VERSION=3.11.15",
+                "PYTHON_SHA256=272179ddd9a2e41a0fc8e42e33dfbdca0b3711aa5abf372d3f2d51543d09b625"
+            ],
+            "Cmd": [
+                "python",
+                "app.py"
+            ],
+            "Image": "myflaskapp:1.0",
+            "Volumes": null,
+            "WorkingDir": "/usr/src/app",
+            "Entrypoint": null,
+            "Labels": {}
+        },
+        "NetworkSettings": {
+            "SandboxID": "f50296b40559fc5f26bdb5473d54799d5ca0d3e4deee2efef65f5b63d647329e",
+            "SandboxKey": "/var/run/docker/netns/f50296b40559",
+            "Ports": {
+                "5000/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "5000"
+                    },
+                    {
+                        "HostIp": "::",
+                        "HostPort": "5000"
+                    }
+                ]
+            },
+            "Networks": {
+                "app-network": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "08cb2ff153635ea4921180b9a59c33050936a571704dabeb57182c1a146db390",
+                    "EndpointID": "70772877bf8f4595e835c23c92d8fa0c9a964df496ae5bd2ac67d0d41f028b99",
+                    "Gateway": "172.18.0.1",
+                    "IPAddress": "172.18.0.3",
+                    "MacAddress": "0a:fd:6f:10:86:47",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "flask-app",
+                        "3ade4088129d"
+                    ]
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:5c107ec07a85fc47c93f393f42a2c89099458104034aa6d90ff0f880ece1f65a",
+            "size": 1811,
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker stop flask-app
+flask-app
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker start flask-app
+flask-app
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker restart flask-app
+flask-app
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker stop redis-server
+redis-server
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker rm redis-server
+redis-server
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker run -d --name redis-server --network app-network -v redis-data:/data redis:7-alpine redis-server --save 60 1
+64745ea0d29f7cc91408050d8479599d1ed69ed54ec34e284a854af04f22e7fe
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker run -it --rm alpine ping -c 2 redis-server
+Unable to find image 'alpine:latest' locally
+latest: Pulling from library/alpine
+55afa1ecc21d: Pull complete 
+56dceff11b33: Download complete 
+f5124fb579e2: Download complete 
+Digest: sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b
+Status: Downloaded newer image for alpine:latest
+ping: bad address 'redis-server'
+
+What's next:
+    Debug this container error with Gordon → docker ai "help me fix this container error"
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker run -it --rm --network app-network alpine ping -c 2 redis-server
+PING redis-server (172.18.0.2): 56 data bytes
+64 bytes from 172.18.0.2: seq=0 ttl=64 time=3.859 ms
+64 bytes from 172.18.0.2: seq=1 ttl=64 time=0.118 ms
+
+--- redis-server ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 0.118/1.988/3.859 ms
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker stop flask-app redis-server
+flask-app
+redis-server
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker rm flask-app redis-server
+flask-app
+redis-server
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker network rm app-network
+app-network
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker volume rm redis-data
+redis-data
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker rmi myflaskapp:1.0
+Untagged: myflaskapp:1.0
+Deleted: sha256:1635151f9c2498b3e2982c580fa9dc3aa344399d70cc554dd00a7bf8af79de52                                                             docker ps
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> 
+CONTAINER ID   IMAGE                 COMMAND                  CREATED        STATUS          PORTS                                                                                          NAMES
+0cdfbdb1852f   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   45 hours ago   Up 56 minutes   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp, 0.0.0.0:50000->50000/tcp, [::]:50000->50000/tcp   jenkins
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker logs flask-app
+Error response from daemon: No such container: flask-app
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker port flask-app
+Error response from daemon: No such container: flask-app
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker images
+                                                       i Info →   U  In Use
+IMAGE                      ID             DISK USAGE   CONTENT SIZE   EXTRA
+alpine:latest              28bd5fe8b56d         13MB         3.93MB        
+attendance-system:latest   218befc53cc4        238MB         63.1MB    U   
+hello-world:latest         c3cbe1cc1aa5       25.9kB         9.49kB    U   
+jenkins-docker:latest      bd6cb240c180       1.41GB          451MB        
+jenkins/jenkins:lts        f4f65e6cd140        801MB          290MB    U   
+redis:7-alpine             e7723ff73d96       57.8MB         16.8MB        
+sonarqube:lts-community    f709975ab31d       1.02GB          398MB    U   
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker build -t myflaskapp:1.0 .
+[+] Building 3.6s (11/11) FINISHED                    docker:desktop-linux
+ => [internal] load build definition from Dockerfile                  0.1s
+ => => transferring dockerfile: 407B                                  0.0s
+ => [internal] load metadata for docker.io/library/python:3.11-slim   2.2s
+ => [auth] library/python:pull token for registry-1.docker.io         0.0s
+ => [internal] load .dockerignore                                     0.0s
+ => => transferring context: 2B                                       0.0s
+ => [internal] load build context                                     0.0s
+ => => transferring context: 93B                                      0.0s
+ => [1/5] FROM docker.io/library/python:3.11-slim@sha256:94c50be2dc9  0.0s
+ => => resolve docker.io/library/python:3.11-slim@sha256:94c50be2dc9  0.0s
+ => CACHED [2/5] WORKDIR /usr/src/app                                 0.0s
+ => CACHED [3/5] COPY requirements.txt .                              0.0s
+ => CACHED [4/5] RUN pip install --no-cache-dir -r requirements.txt   0.0s
+ => CACHED [5/5] COPY . .                                             0.0s
+ => exporting to image                                                1.1s
+ => => exporting layers                                               0.0s
+ => => exporting manifest sha256:5c107ec07a85fc47c93f393f42a2c890994  0.0s
+ => => exporting config sha256:3d107ea38d7f9a6151d2b992d5dc92e452d67  0.0s
+ => => exporting attestation manifest sha256:308a4130efc9fd99638445f  0.1s
+ => => exporting manifest list sha256:0c4f7e77c7976618f40dbbf442a029  0.0s
+ => => naming to docker.io/library/myflaskapp:1.0                     0.0s
+ => => unpacking to docker.io/library/myflaskapp:1.0                  0.9s
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+8a3ab41acca7   bridge    bridge    local
+09b861fefbc2   host      host      local
+b845e5e9ebd8   none      null      local
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker network create app-network
+2b39cf0f01165b7e98136b570db779d462053eb069d3ec3a1798af758e958867
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker volume ls
+DRIVER    VOLUME NAME
+local     4e0ea1b7c7cda133b2513b0e6fba2e891984ad856beca1add8060dfcfa55a040
+local     7dd8341f6074dfb7263316ed80af11329f951023c383d3c00142090d51e39a16
+local     8fd27c9df53cfff93344c93c45b14338d43c456d2ce31c9e20fa339e02207bac
+local     79956380e47c79c2483e7ab0f245728492740a82e1d6ea42a55ca1cccdf64aa1
+local     cc6b7224684ac4d72d8e1a9639ebd6bf57f242aa403441ef74467a118eff10ac
+local     jenkins_home
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker volume create redis-data
+redis-data
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker run -d --name flask-app --network app-network -p 5000:5000 myflaskapp:1.0
+b3f915d417f459968908a0e740276f219a45696a19da039036a9bd356ee321b0
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> ^C
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker run -d --name redis-server --network app-network -v redis-data:/data redis:7-alpine redis-server --save 60 1
+d7031fb73d980ba87482d4ffdd4154395fc76430e4f0b2851deb28eab090c599
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker ps
+
+CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS             PORTS                                                                                          NAMES
+d7031fb73d98   redis:7-alpine        "docker-entrypoint.s…"   9 seconds ago    Up 7 seconds       6379/tcp                                                                                       redis-server
+b3f915d417f4   myflaskapp:1.0        "python app.py"          56 seconds ago   Up 55 seconds      0.0.0.0:5000->5000/tcp, [::]:5000->5000/tcp                                                    flask-app
+0cdfbdb1852f   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   45 hours ago     Up About an hour   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp, 0.0.0.0:50000->50000/tcp, [::]:50000->50000/tcp   jenkins
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker ps -a
+CONTAINER ID   IMAGE                     COMMAND                  CREATED              STATUS                      PORTS                                                                                          NAMES
+d7031fb73d98   redis:7-alpine            "docker-entrypoint.s…"   20 seconds ago       Up 18 seconds               6379/tcp                                                                                       redis-server
+b3f915d417f4   myflaskapp:1.0            "python app.py"          About a minute ago   Up About a minute           0.0.0.0:5000->5000/tcp, [::]:5000->5000/tcp                                                    flask-app
+e4d92597faaa   sonarqube:lts-community   "/opt/sonarqube/dock…"   33 hours ago         Exited (130) 23 hours ago                                                                                                  sonarqube
+0cdfbdb1852f   jenkins/jenkins:lts       "/usr/bin/tini -- /u…"   45 hours ago         Up About an hour            0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp, 0.0.0.0:50000->50000/tcp, [::]:50000->50000/tcp   jenkins
+e95b0c108304   attendance-system         "/docker-entrypoint.…"   3 days ago           Exited (255) 9 hours ago    0.0.0.0:8081->80/tcp                                                                           attendance
+5be7380631dc   hello-world               "/hello"                 6 days ago           Exited (0) 23 hours ago                                                                                                    thirsty_rosalind
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker logs flask-app
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.2:5000
+Press CTRL+C to quit
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker stop redis-server
+redis-server
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker rm redis-server
+redis-server
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker run -d --name redis-server --network app-network -v redis-data:/data redis:7-alpine redis-server --save 60 1
+6cb31b210c623c08850db963084592bde5150edf6e88129921aba688e97d3c85
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker run -it --rm alpine ping -c 2 redis-server
+ping: bad address 'redis-server'
+
+What's next:
+    Debug this container error with Gordon → docker ai "help me fix this container error"
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker run -it --rm --network app-network alpine ping -c 2 redis-server
+PING redis-server (172.18.0.3): 56 data bytes
+64 bytes from 172.18.0.3: seq=0 ttl=64 time=1.488 ms
+64 bytes from 172.18.0.3: seq=1 ttl=64 time=0.424 ms
+
+--- redis-server ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 0.424/0.956/1.488 ms
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker stop flask-app redis-server
+flask-app
+redis-server
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker rm flask-app redis-server
+flask-app
+redis-server
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker network rm app-network
+app-network
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker volume rm redis-data
+redis-data
+(.venv) PS C:\Users\KHUSHI\OneDrive\Desktop\docker-practical\app> docker rmi myflaskapp:1.0
+Untagged: myflaskapp:1.0
