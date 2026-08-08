@@ -1,0 +1,312 @@
+//cmd commands
+
+Microsoft Windows [Version 10.0.26200.8973]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Aditya>docker --version
+Docker version 29.6.2, build dfc4efb
+
+C:\Users\Aditya>docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+4f55086f7dd0: Pull complete
+d5e71e642bf5: Download complete
+Digest: sha256:7f4da0fc94bcece205a8c0b6f4d11c8196924654ffe5c4d1aa439b7f632048b2
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+
+C:\Users\Aditya>docker run -dit --name data-test ubuntu
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+a7fb98a8eddd: Pull complete
+617772c7d19b: Pull complete
+cc2ffdbc1bf7: Download complete
+Digest: sha256:678c6550cc43645e08669028bc177f50be4e7c5b8cca677067b1914d4afc7a03
+Status: Downloaded newer image for ubuntu:latest
+2cc9036dc526cd205ade18b5a76434faf2911bd8688b658d13977371a752d57a
+
+C:\Users\Aditya>docker exec -it data-test bash
+root@2cc9036dc526:/# mkdir /mydata
+root@2cc9036dc526:/# echo "This is my important data" > /mydata/student.txt
+root@2cc9036dc526:/# cat /mydata/student.txt
+This is my important data
+root@2cc9036dc526:/# exit
+exit
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug data-test
+    Learn more at https://docs.docker.com/go/debug-cli/
+
+C:\Users\Aditya>docker rm -f data-test
+data-test
+
+C:\Users\Aditya>docker run -dit --name data-test2 ubuntu
+913f4a03a406af2d281e2e6fc4d27914069393f1306e290d3894d3b77179841b
+
+C:\Users\Aditya>docker exec -it data-test2 bash
+root@913f4a03a406:/# ls /mydata
+ls: cannot access '/mydata': No such file or directory
+root@913f4a03a406:/# exit
+exit
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug data-test2
+    Learn more at https://docs.docker.com/go/debug-cli/
+
+C:\Users\Aditya>docker rm -f data-test2
+data-test2
+
+C:\Users\Aditya>docker volume create student-data
+student-data
+
+C:\Users\Aditya>docker volume ls
+DRIVER    VOLUME NAME
+local     104d8aa52d0eb1b335ed07dd9ce9806ce37dcebc1387927883aa687c1b3bd9bd
+local     63949bcfb15bcaf920c3b225b150b690292368b66b652b02f34d6033a645f6e9
+local     ae2015b5d9e054a1bdd6153661a88d97e58ea57a5995bd022397f12c9a57cd10
+local     collegeconnect_mongodb_data
+local     d87c4248cecfc88e312ccba81d590381d73ff8a9440e86e1ffb8fde14c016b19
+local     eb09875f6641141fd8f4d8b98303ff6375eb1a70b719233a18e857ed2c0bca4c
+local     jenkins_home
+local     student-data
+
+C:\Users\Aditya>docker volume inspect student-data
+[
+    {
+        "CreatedAt": "2026-08-08T05:21:49Z",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/student-data/_data",
+        "Name": "student-data",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+
+C:\Users\Aditya>docker run -dit --name volume-test -v student-data:/data ubuntu
+ed800aae3fe27a936d11cc038b8d4d3a66b13b91cf61fb7c626f0fa17e6342c5
+
+C:\Users\Aditya>docker exec -it volume-test bash
+root@ed800aae3fe2:/# cd /data
+root@ed800aae3fe2:/data# echo "Docker Volume Practical" > notes.txt
+root@ed800aae3fe2:/data# echo "Student Name: Sharon" > student.txt
+root@ed800aae3fe2:/data# ls
+notes.txt  student.txt
+root@ed800aae3fe2:/data# exit
+exit
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug volume-test
+    Learn more at https://docs.docker.com/go/debug-cli/
+
+C:\Users\Aditya>docker rm -f volume-test
+volume-test
+
+C:\Users\Aditya>docker volume ls
+DRIVER    VOLUME NAME
+local     104d8aa52d0eb1b335ed07dd9ce9806ce37dcebc1387927883aa687c1b3bd9bd
+local     63949bcfb15bcaf920c3b225b150b690292368b66b652b02f34d6033a645f6e9
+local     ae2015b5d9e054a1bdd6153661a88d97e58ea57a5995bd022397f12c9a57cd10
+local     collegeconnect_mongodb_data
+local     d87c4248cecfc88e312ccba81d590381d73ff8a9440e86e1ffb8fde14c016b19
+local     eb09875f6641141fd8f4d8b98303ff6375eb1a70b719233a18e857ed2c0bca4c
+local     jenkins_home
+local     student-data
+
+C:\Users\Aditya>docker run -dit --name volume-test2 -v student-data:/data ubuntu
+43d1d8c6407df700c445c42489ef71f12051633cc21e50ef8d8a27d46c6c4abf
+
+C:\Users\Aditya>docker exec volume-test2 cat /data/notes.txt
+Docker Volume Practical
+
+C:\Users\Aditya>docker exec volume-test2 cat /data/student.txt
+Student Name: Sharon
+
+C:\Users\Aditya>docker rm -f volume-test2
+volume-test2
+
+C:\Users\Aditya>docker run -dit --name container1 -v student-data:/data ubuntu
+a1e585feb3261cc33807b5d7bd243fd4adf7e7e49b9274b8279231584c0da119
+
+C:\Users\Aditya>docker run -dit --name container2 -v student-data:/data ubuntu
+68af7b10be4579d9fed47343bb90b565d1dc442ddb3c523d9a5bbb17244faa67
+
+C:\Users\Aditya>docker exec container1 bash -c "echo 'Created by Container 1' > /data/container1.txt"
+
+C:\Users\Aditya>docker exec container2 cat /data/container1.txt
+Created by Container 1
+
+C:\Users\Aditya>docker run -dit --name mount-test --mount source=student-data,target=/data ubuntu
+25fc5a8dbf400a69191b091c7954c2f9e3905d0064739322a49ff10a43df3d4e
+
+C:\Users\Aditya>docker run -dit --name readonly-test -v student-data:/data:ro ubuntu
+546fe169ce20b2324ef414d8dd7af84655d212d6cb6d6254f45490b3d010bfb6
+
+C:\Users\Aditya>docker exec -it readonly-test bash
+root@546fe169ce20:/# cd /data
+echo "new data" > newfile.txt   # Permission denied
+exit
+bash: newfile.txt: Read-only file system
+exit
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug readonly-test
+    Learn more at https://docs.docker.com/go/debug-cli/
+
+C:\Users\Aditya>mkdir C:\DockerLabs\data
+
+C:\Users\Aditya>echo Hello from Windows > C:\DockerLabs\data\windows.txt
+
+C:\Users\Aditya>docker run -dit --name bind-test -v C:\DockerLabs\data:/data ubuntu
+117db8d1bb27866a15709b5bbb69c7711e384c54c09fc4261b67fcf25cbfdc8e
+
+C:\Users\Aditya>docker exec -it bind-test bash
+root@117db8d1bb27:/# cat /data/windows.txt
+echo "Modified from Docker" > /data/docker.txt
+exit
+Hello from Windows
+exit
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug bind-test
+    Learn more at https://docs.docker.com/go/debug-cli/
+
+C:\Users\Aditya>docker volume create website-data
+website-data
+
+C:\Users\Aditya>docker run -d --name nginx-volume -p 8080:80 -v website-data:/usr/share/nginx/html nginx
+Unable to find image 'nginx:latest' locally
+
+What's next:
+    Debug this container error with Gordon → docker ai "help me fix this container error"
+docker: Error response from daemon: failed to resolve reference "docker.io/library/nginx:latest": failed to do request: Head "https://registry-1.docker.io/v2/library/nginx/manifests/latest": tls: failed to verify certificate: x509: certificate is valid for internetauth.sbup.edu.in, www.internetauth.sbup.edu.in, not registry-1.docker.io
+
+Run 'docker run --help' for more information
+
+C:\Users\Aditya>docker run --rm -v website-data:/data ubuntu bash -c "echo '<h1>Hello from Docker Volume</h1>' > /data/index.html"
+
+C:\Users\Aditya>docker rm -f nginx-volume
+Error response from daemon: No such container: nginx-volume
+
+C:\Users\Aditya>docker volume ls
+DRIVER    VOLUME NAME
+local     104d8aa52d0eb1b335ed07dd9ce9806ce37dcebc1387927883aa687c1b3bd9bd
+local     63949bcfb15bcaf920c3b225b150b690292368b66b652b02f34d6033a645f6e9
+local     ae2015b5d9e054a1bdd6153661a88d97e58ea57a5995bd022397f12c9a57cd10
+local     collegeconnect_mongodb_data
+local     d87c4248cecfc88e312ccba81d590381d73ff8a9440e86e1ffb8fde14c016b19
+local     eb09875f6641141fd8f4d8b98303ff6375eb1a70b719233a18e857ed2c0bca4c
+local     jenkins_home
+local     student-data
+local     website-data
+
+C:\Users\Aditya>docker run -d --name nginx-new -p 8080:80 -v website-data:/usr/share/nginx/html nginx
+Unable to find image 'nginx:latest' locally
+
+What's next:
+    Debug this container error with Gordon → docker ai "help me fix this container error"
+docker: Error response from daemon: failed to resolve reference "docker.io/library/nginx:latest": failed to do request: Head "https://registry-1.docker.io/v2/library/nginx/manifests/latest": tls: failed to verify certificate: x509: certificate is valid for internetauth.sbup.edu.in, www.internetauth.sbup.edu.in, not registry-1.docker.io
+
+Run 'docker run --help' for more information
+
+C:\Users\Aditya>docker volume create mongo-data
+mongo-data
+
+C:\Users\Aditya>docker run -d --name mongodb -p 27017:27017 -v mongo-data:/data/db mongo
+38f1ebfba6d5e63bb5612e8a1fcfc420822d2e6a8e1fa161ef09eb443b140fa9
+
+C:\Users\Aditya># Add data via MongoDB Compass (mongodb://localhost:27017):
+'#' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\Aditya># Database: CollegeDB | Collection: Students | Document: { "name": "Rahul", "course": "BCA" }
+'#' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\Aditya>
+C:\Users\Aditya>docker rm -f mongodb
+mongodb
+
+C:\Users\Aditya>docker run -d --name mongodb-new -p 27017:27017 -v mongo-data:/data/db mongo
+afe909c931cb9583870ec6bfa94567fd16584106416d9f8f63f8b81bad23f57a
+
+C:\Users\Aditya>mkdir C:\DockerLabs\backup
+
+C:\Users\Aditya>docker run --rm -v student-data:/data -v C:\DockerLabs\backup:/backup ubuntu tar czf /backup/student-data.tar.gz -C /data .
+
+C:\Users\Aditya>docker volume create restored-data
+restored-data
+
+C:\Users\Aditya>docker run --rm -v restored-data:/data -v C:\DockerLabs\backup:/backup ubuntu tar xzf /backup/student-data.tar.gz -C /data
+
+C:\Users\Aditya>docker run --rm -v restored-data:/data ubuntu ls -l /data
+total 12
+-rw-r--r-- 1 root root 23 Aug  8 05:40 container1.txt
+-rw-r--r-- 1 root root 24 Aug  8 05:25 notes.txt
+-rw-r--r-- 1 root root 21 Aug  8 05:26 student.txt
+
+C:\Users\Aditya>docker run -dit --name container1 -v student-data:/data ubuntu
+
+What's next:
+    Debug this container error with Gordon → docker ai "help me fix this container error"
+docker: Error response from daemon: Conflict. The container name "/container1" is already in use by container "a1e585feb3261cc33807b5d7bd243fd4adf7e7e49b9274b8279231584c0da119". You have to remove (or rename) that container to be able to reuse that name.
+
+Run 'docker run --help' for more information
+
+C:\Users\Aditya>docker run -dit --name container2 --volumes-from container1 ubuntu
+
+What's next:
+    Debug this container error with Gordon → docker ai "help me fix this container error"
+docker: Error response from daemon: Conflict. The container name "/container2" is already in use by container "68af7b10be4579d9fed47343bb90b565d1dc442ddb3c523d9a5bbb17244faa67". You have to remove (or rename) that container to be able to reuse that name.
+
+Run 'docker run --help' for more information
+
+C:\Users\Aditya>docker volume create student-records
+student-records
+
+C:\Users\Aditya>docker run -dit --name student-app -v student-records:/data ubuntu
+cdb989b7672e0d8710084996450501b3a134818bf773fd323db4f97f92002d30
+
+C:\Users\Aditya>docker exec -it student-app bash
+root@cdb989b7672e:/# echo "101, raju, MCA" > /data/students.csv
+echo "102, aditya, MCA" >> /data/students.csv
+cat /data/students.csv
+exit
+101, raju, MCA
+102, aditya, MCA
+exit
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug student-app
+    Learn more at https://docs.docker.com/go/debug-cli/
+
+C:\Users\Aditya>docker rm -f student-app
+student-app
+
+C:\Users\Aditya>docker run -dit --name student-app-new -v student-records:/data ubuntu
+b9d9c682756e6013fbf04a9fd87bdd4613ba17f8684db037f4e40b36128fd90b
+
+C:\Users\Aditya>docker exec student-app-new cat /data/students.csv
+101, raju, MCA
+102, aditya, MCA
