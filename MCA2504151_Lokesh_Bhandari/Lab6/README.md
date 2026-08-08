@@ -1,0 +1,1 @@
+Student Management System CI Pipeline using Jenkins Scripted Pipeline.
