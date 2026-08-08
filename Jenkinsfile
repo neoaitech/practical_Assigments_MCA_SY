@@ -1,40 +1,43 @@
 node {
+    def pythonCommand = isUnix() ? '.venv/bin/python' : '.venv/Scripts/python.exe'
+    def runCommand = { String command ->
+        if (isUnix()) {
+            sh command
+        } else {
+            bat command
+        }
+    }
 
     stage('Checkout') {
         checkout scm
     }
 
     stage('Create Virtual Environment') {
-        sh 'python3 -m venv venv'
+        runCommand("python -m venv .venv")
     }
 
     stage('Install Dependencies') {
-        sh '. venv/bin/activate && pip install -r requirements.txt'
-    }
-
-    stage('Run Application') {
-        sh '. venv/bin/activate && python app.py'
+        runCommand("${pythonCommand} -m pip install -r requirements.txt")
     }
 
     stage('Run Unit Tests') {
-        sh '. venv/bin/activate && pytest'
+        runCommand("${pythonCommand} -m pytest")
     }
 
     stage('Code Quality') {
-        sh '. venv/bin/activate && flake8 .'
+        runCommand("${pythonCommand} -m flake8 .")
     }
 
     stage('Generate Coverage') {
-        sh '. venv/bin/activate && coverage run -m pytest'
-        sh '. venv/bin/activate && coverage xml'
+        runCommand("${pythonCommand} -m coverage run -m pytest")
+        runCommand("${pythonCommand} -m coverage xml")
     }
 
     stage('Archive Reports') {
-        archiveArtifacts artifacts: '*.xml', fingerprint: true
+        archiveArtifacts artifacts: 'coverage.xml', fingerprint: true
     }
 
     stage('Finish') {
-        echo "Pipeline Completed Successfully"
+        echo 'Pipeline completed successfully'
     }
-
 }
