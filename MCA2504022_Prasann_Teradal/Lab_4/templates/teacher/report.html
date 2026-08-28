@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Report</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="container mt-5">
+    <h2>Attendance Report</h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+
+            <th>Date</th>
+
+            <th>Status</th>
+
+        </tr>
+
+        {% for row in attendance %}
+
+        <tr>
+
+            <td>{{ row.date }}</td>
+
+            <td>{{ row.status }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <h2 class="mt-5">
+
+        Leave History
+
+    </h2>
+
+    <table class="table table-bordered">
+
+        <tr>
+
+            <th>Date</th>
+
+            <th>Reason</th>
+
+            <th>Status</th>
+
+        </tr>
+
+        {% for leave in leaves %}
+
+        <tr>
+
+            <td>{{ leave.date }}</td>
+
+            <td>{{ leave.reason }}</td>
+
+            <td>{{ leave.status }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <a href="/teacher_dashboard" class="btn btn-primary">
+
+        Back
+
+    </a>
+</body>
+
+</html>
