@@ -1,0 +1,54 @@
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t college-event-app:latest .'
+            }
+        }
+
+        stage('Stop Existing Application') {
+            steps {
+                sh '''
+                docker compose down || true
+                '''
+            }
+        }
+
+        stage('Deploy Application') {
+            steps {
+                sh '''
+                docker compose up -d --build
+                '''
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                sh '''
+                docker compose ps
+                '''
+            }
+        }
+    }
+
+    post {
+
+        success {
+            echo 'College Event Registration Application deployed successfully!'
+        }
+
+        failure {
+            echo 'Deployment failed.'
+        }
+    }
+}

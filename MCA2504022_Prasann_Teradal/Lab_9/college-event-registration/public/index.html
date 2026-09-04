@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Event Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>College Event Registration</h1>
+    <p>Register for upcoming college events</p>
+
+    <form id="registrationForm">
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Full Name"
+            required
+        >
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email"
+            required
+        >
+
+        <input
+            type="tel"
+            id="phone"
+            placeholder="Phone Number"
+            required
+        >
+
+        <input
+            type="text"
+            id="college"
+            placeholder="College Name"
+            required
+        >
+
+        <input
+            type="text"
+            id="course"
+            placeholder="Course"
+            required
+        >
+
+        <select id="year" required>
+            <option value="">Select Year</option>
+            <option value="FY">First Year</option>
+            <option value="SY">Second Year</option>
+            <option value="TY">Third Year</option>
+            <option value="Final Year">Final Year</option>
+        </select>
+
+        <select id="event" required>
+            <option value="">Select Event</option>
+            <option value="Hackathon">Hackathon</option>
+            <option value="Coding Competition">Coding Competition</option>
+            <option value="Tech Fest">Tech Fest</option>
+            <option value="Sports Event">Sports Event</option>
+        </select>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    <div id="message"></div>
+
+</div>
+
+<script>
+
+document.getElementById("registrationForm")
+.addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        college: document.getElementById("college").value,
+        course: document.getElementById("course").value,
+        year: document.getElementById("year").value,
+        event: document.getElementById("event").value
+    };
+
+    try {
+
+        const response = await fetch("/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        document.getElementById("message").innerText =
+            result.message;
+
+        if (response.ok) {
+            document.getElementById("registrationForm").reset();
+        }
+
+    } catch (error) {
+
+        document.getElementById("message").innerText =
+            "Registration failed.";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
