@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: clg_mongo_no_vol
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    # NOTE: no "volumes:" entry here on purpose.
+    # Mongo still writes to its internal container filesystem (/data/db),
+    # but that layer is destroyed the moment this container is removed
+    # (docker-compose down, docker rm, etc.) -> data does NOT persist.
+    networks:
+      - clg-net
+
+  app:
+    build: .
+    container_name: clg_app_no_vol
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/clg_events
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    networks:
+      - clg-net
+
+networks:
+  clg-net:
+    driver: bridge
