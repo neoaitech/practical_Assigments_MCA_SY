@@ -1,0 +1,23 @@
+node {
+
+    stage('Checkout') {
+        checkout scm
+    }
+
+    stage('Debug Workspace') {
+        sh 'pwd'
+        sh 'ls -la'
+    }
+
+    stage('Build') {
+        echo "Building Project"
+    }
+
+    stage('Run Python') {
+        sh 'python3 hello.py'
+    }
+
+    stage('Finish') {
+        echo "Pipeline Completed Successfully"
+    }
+}
