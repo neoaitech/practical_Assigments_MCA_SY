@@ -1,0 +1,30 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: college-event-mongo
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - college-event-network
+
+  backend:
+    build: ./backend
+    container_name: college-event-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      MONGO_URI: mongodb://mongo:27017/college_event
+    depends_on:
+      - mongo
+    networks:
+      - college-event-network
+
+volumes:
+  mongo-data:
+
+networks:
+  college-event-network:
+    driver: bridge
