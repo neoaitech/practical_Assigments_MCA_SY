@@ -1,0 +1,9 @@
+CREATE TABLE registrations(
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+roll VARCHAR(20),
+department VARCHAR(50),
+email VARCHAR(100),
+mobile VARCHAR(15),
+event VARCHAR(100)
+);
