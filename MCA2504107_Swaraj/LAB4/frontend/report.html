@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance Reports</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>AMS</h2>
+
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="admin.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="report.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Reports
+                </a>
+            </li>
+
+            <li>
+                <a href="attendance.html">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="index.html">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <header>
+
+            <h1>Attendance Reports</h1>
+
+            <div class="admin-name">
+
+                Welcome Admin
+
+            </div>
+
+        </header>
+
+        <!-- Summary Cards -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <i class="fa-solid fa-users"></i>
+
+                <h2 id="totalStudentsReport">0</h2>
+
+                <p>Total Students</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-user-check"></i>
+
+                <h2 id="presentCount">0</h2>
+
+                <p>Total Present</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-user-xmark"></i>
+
+                <h2 id="absentCount">0</h2>
+
+                <p>Total Absent</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-percent"></i>
+
+                <h2 id="overallPercentage">0%</h2>
+
+                <p>Overall Attendance</p>
+
+            </div>
+
+        </section>
+
+        <!-- Filter -->
+
+        <section class="form-section">
+
+            <h2>Filter Report</h2>
+
+            <form>
+
+                <input
+                    type="date">
+
+                <select>
+
+                    <option>All Departments</option>
+                    <option>MCA</option>
+                    <option>BCA</option>
+                    <option>BSc IT</option>
+
+                </select>
+
+                <button type="button">
+
+                    Generate Report
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Student Report -->
+
+        <section>
+
+            <h2>Student Attendance Report</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Roll No</th>
+
+                        <th>Name</th>
+
+                        <th>Department</th>
+
+                        <th>Present</th>
+
+                        <th>Absent</th>
+
+                        <th>Percentage</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="reportTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- Subject Report -->
+
+        <section>
+
+            <h2>Subject Wise Report</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Subject</th>
+
+                        <th>Total Classes</th>
+
+                        <th>Average Attendance</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>DBMS</td>
+
+                        <td>40</td>
+
+                        <td>90%</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Java</td>
+
+                        <td>42</td>
+
+                        <td>87%</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Python</td>
+
+                        <td>38</td>
+
+                        <td>94%</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Web Technology</td>
+
+                        <td>35</td>
+
+                        <td>88%</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- Action Buttons -->
+
+        <section
+            class="button-group">
+
+            <button
+                onclick="window.print()">
+
+                <i class="fa-solid fa-print"></i>
+
+                Print Report
+
+            </button>
+
+            <button
+                id="downloadPdf">
+
+                <i class="fa-solid fa-file-pdf"></i>
+
+                Export PDF
+
+            </button>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>
