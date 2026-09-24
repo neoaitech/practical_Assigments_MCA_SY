@@ -1,0 +1,59 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+  background: #f6f7fb;
+  color: #172033;
+}
+.glass-nav {
+  background: linear-gradient(90deg, #171b4a, #3d2d88);
+  padding: 16px 0;
+}
+.hero {
+  min-height: calc(100vh - 72px);
+  padding: 70px 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(109, 91, 255, .32), transparent 30%),
+    radial-gradient(circle at 85% 75%, rgba(0, 210, 255, .25), transparent 30%),
+    linear-gradient(135deg, #10142e 0%, #28205d 52%, #171d46 100%);
+  color: white;
+}
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: .98;
+  font-weight: 800;
+  letter-spacing: -3px;
+}
+.hero h1 span { color: #79e5ff; }
+.hero .lead { max-width: 580px; color: #d9ddf5; }
+.registration-card {
+  border-radius: 28px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.30);
+  color: #172033;
+}
+.form-control, .form-select {
+  min-height: 50px;
+  border-radius: 14px;
+  border: 1px solid #e2e5ee;
+}
+.form-control:focus, .form-select:focus {
+  box-shadow: 0 0 0 .2rem rgba(13,110,253,.12);
+}
+.btn-primary {
+  border: 0;
+  background: linear-gradient(90deg, #635bff, #3c8cff);
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  min-width: 105px;
+  padding: 15px 18px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.07);
+  border-radius: 18px;
+}
+.stat strong { font-size: 1.4rem; }
+.stat small { color: #cbd0e8; }
+.list-page { min-height: 100vh; background: #f5f6fa; }
+.table thead th { background: #171b4a; color: white; border: 0; }
+.table td, .table th { padding: 16px; }
