@@ -1,0 +1,40 @@
+services:
+
+  mongo:
+    image: mongo:6
+    container_name: clg_mongo_with_vol
+    restart: unless-stopped
+
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - mongo-data:/data/db
+
+    networks:
+      - clg-net
+
+  app:
+    build: .
+    container_name: clg_app_with_vol
+    restart: unless-stopped
+
+    depends_on:
+      - mongo
+
+    environment:
+      MONGO_URL: mongodb://mongo:27017/clg_events
+      PORT: 3000
+
+    ports:
+      - "3000:3000"
+
+    networks:
+      - clg-net
+
+volumes:
+  mongo-data:
+
+networks:
+  clg-net:
+    driver: bridge
