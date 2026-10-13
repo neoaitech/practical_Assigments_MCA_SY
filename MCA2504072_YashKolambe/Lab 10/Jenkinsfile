@@ -1,0 +1,75 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(
+            name: 'VOLUME_MODE',
+            choices: ['with-volume', 'without-volume'],
+            description: 'Deploy MongoDB WITH a persistent Docker volume or WITHOUT one'
+        )
+    }
+
+    environment {
+        IMAGE_NAME = "clg-event-app"
+        COMPOSE_FILE = "${params.VOLUME_MODE == 'with-volume' ? 'docker-compose-with-volume.yml' : 'docker-compose-without-volume.yml'}"
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+                echo "Deploying in mode: ${params.VOLUME_MODE}"
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh "docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} ."
+            }
+        }
+
+        stage('Stop Previous Stack') {
+            steps {
+                sh """
+                    docker compose -f docker-compose-with-volume.yml down || true
+                    docker compose -f docker-compose-without-volume.yml down || true
+                """
+            }
+        }
+
+        stage('Deploy Stack') {
+            steps {
+                sh "docker compose -f ${COMPOSE_FILE} up -d --build"
+            }
+        }
+
+       
+
+        stage('Persistence Note') {
+            steps {
+                script {
+                    if (params.VOLUME_MODE == 'with-volume') {
+                        echo "Named volume 'mongo-data' is in use — data will survive 'docker compose down' and container recreation."
+                    } else {
+                        echo "No volume configured — MongoDB data will be LOST on 'docker compose down' / container removal."
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            sh "docker image prune -f"
+        }
+
+        success {
+            echo "Deployment finished successfully in ${params.VOLUME_MODE} mode."
+        }
+
+        failure {
+            echo "Deployment failed. Check the stage logs above."
+        }
+    }
+}
