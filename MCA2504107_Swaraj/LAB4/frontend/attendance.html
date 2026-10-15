@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance Management</title>
+
+    <link rel="stylesheet"
+        href="css/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>AMS</h2>
+
+        </div>
+
+        <ul>
+
+            <li>
+
+                <a href="admin.html">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    Dashboard
+
+                </a>
+
+            </li>
+
+            <li class="active">
+
+                <a href="attendance.html">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    Attendance
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="report.html">
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                    Reports
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="index.html">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Logout
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main-content">
+
+        <header>
+
+            <h1>
+
+                Attendance Management
+
+            </h1>
+
+            <div class="admin-name">
+
+                Attendance Portal
+
+            </div>
+
+        </header>
+
+        <!-- Statistics -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <i class="fa-solid fa-users"></i>
+
+                <h2 id="totalStudentAttendance">
+
+                    0
+
+                </h2>
+
+                <p>
+
+                    Students
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-user-check"></i>
+
+                <h2 id="presentStudents">
+
+                    0
+
+                </h2>
+
+                <p>
+
+                    Present
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-user-xmark"></i>
+
+                <h2 id="absentStudents">
+
+                    0
+
+                </h2>
+
+                <p>
+
+                    Absent
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-percent"></i>
+
+                <h2 id="todayPercentage">
+
+                    0%
+
+                </h2>
+
+                <p>
+
+                    Today's Attendance
+
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- Attendance Form -->
+
+        <section class="form-section">
+
+            <h2>
+
+                Mark Attendance
+
+            </h2>
+
+            <form id="attendanceForm">
+
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="Student Name"
+                    required>
+
+                <input
+                    type="text"
+                    id="subject"
+                    placeholder="Subject"
+                    required>
+
+                <input
+                    type="date"
+                    id="date"
+                    required>
+
+                <select
+                    id="status">
+
+                    <option value="Present">
+
+                        Present
+
+                    </option>
+
+                    <option value="Absent">
+
+                        Absent
+
+                    </option>
+
+                </select>
+
+                <button
+                    type="submit">
+
+                    Save Attendance
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Attendance Table -->
+
+        <section>
+
+            <h2>
+
+                Attendance Records
+
+            </h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+
+                            Student
+
+                        </th>
+
+                        <th>
+
+                            Subject
+
+                        </th>
+
+                        <th>
+
+                            Date
+
+                        </th>
+
+                        <th>
+
+                            Status
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody
+                    id="attendanceBody">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>AMS</h2>
+        </div>
+
+        <ul>
+
+            <li class="active">
+                <a href="student.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="#profile">
+                    <i class="fa-solid fa-user"></i>
+                    My Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="#attendance">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="report.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Reports
+                </a>
+            </li>
+
+            <li>
+                <a href="index.html">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <header>
+
+            <h1>Student Dashboard</h1>
+
+            <div class="admin-name">
+                Welcome Student
+            </div>
+
+        </header>
+
+        <!-- Dashboard Cards -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                <h2 id="studentNameCard">Student</h2>
+
+                <p>Name</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-percent"></i>
+
+                <h2 id="attendancePercentage">0%</h2>
+
+                <p>Attendance</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <h2 id="classesAttended">0</h2>
+
+                <p>Classes Attended</p>
+
+            </div>
+
+        </section>
+
+        <!-- Student Profile -->
+
+        <section id="profile">
+
+            <h2>My Profile</h2>
+
+            <table>
+
+                <tr>
+                    <th>Name</th>
+                    <td id="profileName">Sam</td>
+                </tr>
+
+                <tr>
+                    <th>Roll Number</th>
+                    <td id="profileRoll">101</td>
+                </tr>
+
+                <tr>
+                    <th>Department</th>
+                    <td id="profileDepartment">MCA</td>
+                </tr>
+
+                <tr>
+                    <th>Semester</th>
+                    <td id="profileSemester">1</td>
+                </tr>
+
+            </table>
+
+        </section>
+
+        <!-- Attendance Records -->
+
+        <section id="attendance">
+
+            <h2>Attendance History</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Date</th>
+
+                        <th>Subject</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="studentAttendanceTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- Subject Summary -->
+
+        <section>
+
+            <h2>Subject-wise Attendance</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Subject</th>
+
+                        <th>Present</th>
+
+                        <th>Absent</th>
+
+                        <th>Percentage</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>DBMS</td>
+
+                        <td>18</td>
+
+                        <td>2</td>
+
+                        <td>90%</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Java</td>
+
+                        <td>17</td>
+
+                        <td>3</td>
+
+                        <td>85%</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Python</td>
+
+                        <td>19</td>
+
+                        <td>1</td>
+
+                        <td>95%</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>

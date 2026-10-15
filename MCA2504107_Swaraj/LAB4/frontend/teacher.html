@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>AMS</h2>
+        </div>
+
+        <ul>
+
+            <li class="active">
+                <a href="teacher.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="#attendance">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Mark Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="#students">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    Students
+                </a>
+            </li>
+
+            <li>
+                <a href="report.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Reports
+                </a>
+            </li>
+
+            <li>
+                <a href="index.html">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main-content">
+
+        <header>
+
+            <h1>Teacher Dashboard</h1>
+
+            <div class="admin-name">
+                Welcome Teacher
+            </div>
+
+        </header>
+
+        <!-- Dashboard Cards -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                <h2 id="totalStudents">0</h2>
+
+                <p>Total Students</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <h2 id="todayAttendance">0</h2>
+
+                <p>Today's Attendance</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-book"></i>
+
+                <h2>DBMS</h2>
+
+                <p>Current Subject</p>
+
+            </div>
+
+        </section>
+
+        <!-- Attendance Form -->
+
+        <section
+            id="attendance"
+            class="form-section">
+
+            <h2>Mark Attendance</h2>
+
+            <form id="attendanceForm">
+
+                <input
+                    type="text"
+                    id="studentAttendanceName"
+                    placeholder="Student Name"
+                    required>
+
+                <input
+                    type="text"
+                    id="attendanceSubject"
+                    placeholder="Subject"
+                    required>
+
+                <input
+                    type="date"
+                    id="attendanceDate"
+                    required>
+
+                <select
+                    id="attendanceStatus">
+
+                    <option value="Present">Present</option>
+
+                    <option value="Absent">Absent</option>
+
+                </select>
+
+                <button type="submit">
+
+                    Save Attendance
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Attendance Table -->
+
+        <section>
+
+            <h2>Attendance Records</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Student</th>
+
+                        <th>Subject</th>
+
+                        <th>Date</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="attendanceTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <!-- Student List -->
+
+        <section id="students">
+
+            <h2>Student List</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Name</th>
+
+                        <th>Roll No</th>
+
+                        <th>Department</th>
+
+                        <th>Semester</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="teacherStudentTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>
