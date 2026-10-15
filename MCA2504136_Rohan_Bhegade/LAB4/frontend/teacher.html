@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard | Attendance Management System</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <h2>Teacher</h2>
+        </div>
+
+        <ul>
+
+            <li class="active">
+                <a href="teacher.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="teacher-attendance.html">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Take Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="students.html">
+                    <i class="fa-solid fa-users"></i>
+                    Students
+                </a>
+            </li>
+
+            <li>
+                <a href="report.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Reports
+                </a>
+            </li>
+
+            <li>
+                <a href="teacher.html">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="#" onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <header>
+
+            <h1>Teacher Dashboard</h1>
+
+            <div class="profile">
+
+                <i class="fa-solid fa-user-circle"></i>
+
+                <span>Welcome, Teacher</span>
+
+            </div>
+
+        </header>
+
+        <!-- Statistics -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <i class="fa-solid fa-users"></i>
+
+                <h2>120</h2>
+
+                <p>Total Students</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-book"></i>
+
+                <h2>5</h2>
+
+                <p>Subjects</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-calendar-day"></i>
+
+                <h2>4</h2>
+
+                <p>Today's Classes</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <h2>94%</h2>
+
+                <p>Attendance Today</p>
+
+            </div>
+
+        </section>
+
+        <!-- Student Attendance Table -->
+
+        <section class="table-section">
+
+            <h2>Mark Attendance</h2>
+
+            <div class="filters" style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:16px;">
+                <div>
+                    <label><strong>Select Subject</strong></label><br>
+                    <select id="subjectSelect">
+                        <option value="Java Programming">Java Programming</option>
+                        <option value="Python">Python</option>
+                        <option value="DBMS">DBMS</option>
+                        <option value="Operating System">Operating System</option>
+                    </select>
+                </div>
+                <div>
+                    <label><strong>Select Date</strong></label><br>
+                    <input type="date" id="attendanceDate">
+                </div>
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Roll No</th>
+                        <th>Student Name</th>
+                        <th>Course</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="attendanceTableBody">
+                    <tr>
+                        <td colspan="4" style="text-align:center; padding: 24px; color: #94a3b8;">
+                            Loading students...
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <br>
+
+            <div style="display:flex; gap:15px; align-items:center; flex-wrap:wrap;">
+                <button class="save-btn" id="saveAttendanceBtn" type="button">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Save Attendance
+                </button>
+                <button class="save-btn" id="resetAttendanceBtn" type="button">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    Reset
+                </button>
+                <p id="attendanceMessage" class="form-message" style="margin:0; line-height:1.8;"></p>
+            </div>
+
+            <div id="attendanceSummary" style="margin-top:14px; color:#0f172a; font-size:0.95rem;"></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/common.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/teacherAttendance.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance | Attendance Management System</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-calendar-check"></i>
+            <h2>Attendance</h2>
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="admin.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="#">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="report.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Reports
+                </a>
+            </li>
+
+            <li>
+                <a href="#" onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <header>
+
+            <h1>Mark Attendance</h1>
+
+            <div class="profile">
+
+                <i class="fa-solid fa-user-circle"></i>
+
+                <span>Teacher Panel</span>
+
+            </div>
+
+        </header>
+
+        <!-- Attendance Details -->
+
+        <section class="table-section">
+
+            <div class="filters">
+
+                <div>
+
+                    <label><strong>Select Subject</strong></label><br>
+
+                    <select id="subjectSelect">
+                        <option>Java Programming</option>
+                        <option>Python</option>
+                        <option>DBMS</option>
+                        <option>Operating System</option>
+
+                    </select>
+
+                </div>
+
+                <div>
+
+                    <label><strong>Select Date</strong></label><br>
+
+                    <input type="date" id="attendanceDate">
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Roll No</th>
+                        <th>Student Name</th>
+                        <th>Class</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="attendanceTableBody">
+
+                    <tr>
+
+                        <td>101</td>
+                        <td>Rahul Sharma</td>
+                        <td>MCA-I</td>
+
+                        <td>
+
+                            <select>
+
+                                <option>Present</option>
+                                <option>Absent</option>
+                                <option>Leave</option>
+
+                            </select>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>102</td>
+                        <td>Priya Patil</td>
+                        <td>MCA-I</td>
+
+                        <td>
+
+                            <select>
+
+                                <option>Present</option>
+                                <option>Absent</option>
+                                <option>Leave</option>
+
+                            </select>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>103</td>
+                        <td>Amit Kumar</td>
+                        <td>MCA-I</td>
+
+                        <td>
+
+                            <select>
+
+                                <option>Present</option>
+                                <option>Absent</option>
+                                <option>Leave</option>
+
+                            </select>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>104</td>
+                        <td>Neha Singh</td>
+                        <td>MCA-I</td>
+
+                        <td>
+
+                            <select>
+
+                                <option>Present</option>
+                                <option>Absent</option>
+                                <option>Leave</option>
+
+                            </select>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>105</td>
+                        <td>Rohit Patil</td>
+                        <td>MCA-I</td>
+
+                        <td>
+
+                            <select>
+
+                                <option>Present</option>
+                                <option>Absent</option>
+                                <option>Leave</option>
+
+                            </select>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <br>
+
+            <div style="display:flex; gap:15px;">
+
+                <button class="save-btn" id="saveAttendance">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Save Attendance
+
+                </button>
+
+                <button class="save-btn">
+
+                    <i class="fa-solid fa-rotate-right"></i>
+
+                    Reset
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/common.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/attendance.js"></script>
+
+</body>
+</html>
